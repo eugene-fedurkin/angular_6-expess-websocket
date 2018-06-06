@@ -1,0 +1,12 @@
+<div class="content" [ngClass]="{
+  'sentMessage': messageData.fromUserName === userName,
+  'receivedMessage': messageData.fromUserName !== userName }">
+  <div class="avatar">
+    <img [src]="messageData.userAvatar" alt="avatar" />
+  </div>
+  <div class="messageContainer">
+    <div class="name">{{messageData.fromUserName}}</div>
+    <div class="message">{{messageData.message}}</div>
+    <div class="date">{{messageData.date}}</div>
+  </div>
+</div>

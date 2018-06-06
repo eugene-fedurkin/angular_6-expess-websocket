@@ -1,0 +1,35 @@
+mat-toolbar {
+  margin-bottom: 20px;
+}
+
+mat-card {
+  position: relative;
+  height: 70vh;
+  margin-top: 40px;
+  width: 70%;
+  padding: 0;
+  max-width: 777px;
+  margin: 0 auto;
+  overflow-x: hidden;
+}
+mat-form-field {
+  position: absolute;
+  bottom: 0;
+  left: 24px;
+  width: calc(100% - 48px);
+}
+
+.fieldToMessages {
+  height: calc(100% - 96px);
+  overflow-y: scroll;
+  padding: 24px;
+  padding-bottom: 0;
+}
+.fieldToMessages::-webkit-scrollbar {
+  width: 5px;
+  height: 13px;
+}
+
+.fieldToMessages::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.5);
+}

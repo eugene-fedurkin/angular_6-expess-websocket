@@ -1,0 +1,12 @@
+<div *ngIf="user">
+  <mat-toolbar>{{user.name}}</mat-toolbar>
+
+  <mat-card>
+    <div class="fieldToMessages" #field>
+      <app-message [messageData]="message" [userName]="user.name"  *ngFor="let message of user.messages"></app-message>
+    </div>
+    <mat-form-field class="example-full-width">
+      <input matInput [(ngModel)]="message" (keyup.enter)="sendMessage()" placeholder="Type your message" />
+    </mat-form-field>
+  </mat-card>
+</div>

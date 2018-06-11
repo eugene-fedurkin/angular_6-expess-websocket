@@ -63,9 +63,32 @@ app.post('/signin', function(req, res) {
 const io = socket(server);
 
 io.on('connection', function(socket) {
-  console.log('Socket connect');
+  // if (io.sockets.connected) {
+  //   io.sockets.connected;
+  //   console.log(io.sockets.connected)
+  // }
   socket.on('chat', function(data) {
-    console.log(data);
+    console.log('chat', data);
     io.sockets.emit('chat', data);
-  })
+  });
+
+  socket.on('join', function(data) {
+    console.log('join', data);
+    io.sockets.emit('join', data);
+  });
+
+  socket.on('delete', function(data) {
+    console.log('delete', data);
+    io.sockets.emit('delete', data);
+  });
+
+  socket.on('edit', function(message, newMessage) {
+    console.log('edit', message, newMessage);
+    io.sockets.emit('edit', { message, newMessage });
+  });
+
+  socket.on('exitUser', function(userName) {
+    console.log('exitUser', userName);
+    io.sockets.emit('exitUser', userName);
+  });
 });

@@ -1,6 +1,13 @@
 import { ScrollDispatchModule } from '@angular/cdk/scrolling';
 import { NgModule } from '@angular/core';
-import { MatButtonModule, MatCardModule, MatInputModule, MatStepperModule, MatToolbarModule } from '@angular/material';
+import {
+  MatButtonModule,
+  MatCardModule,
+  MatDialogModule,
+  MatInputModule,
+  MatStepperModule,
+  MatToolbarModule,
+} from '@angular/material';
 
 @NgModule({
   imports: [
@@ -10,6 +17,7 @@ import { MatButtonModule, MatCardModule, MatInputModule, MatStepperModule, MatTo
     MatCardModule,
     ScrollDispatchModule,
     MatToolbarModule,
+    MatDialogModule,
   ],
   exports: [
     MatButtonModule,
@@ -18,6 +26,7 @@ import { MatButtonModule, MatCardModule, MatInputModule, MatStepperModule, MatTo
     MatCardModule,
     ScrollDispatchModule,
     MatToolbarModule,
+    MatDialogModule,
   ]
 })
 export class MaterialModule {}

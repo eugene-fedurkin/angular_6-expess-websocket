@@ -3,3 +3,16 @@
 body {
   margin: 0;
 }
+.loaded {
+  background-image: url('https://images.wallpaperscraft.com/image/plant_grass_dry_90282_1920x1080.jpg')!important;
+  filter: blur(0)!important;
+  animation: sharpen 0.5s both;
+}
+@keyframes sharpen {
+  from {
+    filter: blur(4px);
+  }
+  to {
+    filter: blur(1px);
+  }
+}

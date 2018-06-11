@@ -6,6 +6,7 @@
 .avatar {
   display: inline-block;
   height: 35px;
+  z-index: 1;
 }
 img {
   width: 35px;
@@ -17,6 +18,7 @@ img {
   background: aliceblue;
   padding: 10px;
   border-radius: 6px;
+  min-width: 88px;
   max-width: 428px;
   font-size: 14px;
   margin: 0 15px;
@@ -26,7 +28,7 @@ img {
   position: absolute;
   width: 0;
   height: 0;
-  left: -9px;
+  left: -7px;
   bottom: 0;
   border: 6px solid;
   border-color: transparent aliceblue aliceblue transparent;
@@ -36,7 +38,7 @@ img {
   position: absolute;
   width: 0;
   height: 0;
-  right: -9px;
+  right: -7px;
   bottom: 0;
   border: 6px solid;
   border-color: transparent transparent aliceblue aliceblue;
@@ -48,15 +50,38 @@ img {
 .message {
   word-wrap: break-word;
 }
-.date {
+.option {
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   opacity: 0.5;
+  align-items: center;
   font-size: 12px;
+  flex-direction: row-reverse;
+  margin-top: 6px;
+}
+.option > span {
+  margin-right: 10px;
+  line-height: 10px;
 }
 .sentMessage {
   flex-direction: row-reverse;
 }
 .receivedMessage {
   flex-direction: unset;
+}
+.joinMessage {
+  position: relative;
+  margin: 20px 0;
+  text-align: center;
+}
+.joinMessage > span {
+  font-weight: bold;
+}
+i {
+  opacity: 0.3;
+  font-size: 17px;
+}
+i:hover {
+  opacity: 0.7;
+  cursor: pointer;
 }

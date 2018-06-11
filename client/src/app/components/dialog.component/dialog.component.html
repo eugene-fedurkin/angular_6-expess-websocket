@@ -1,0 +1,19 @@
+<h2 mat-dialog-title>Confirm</h2>
+<mat-dialog-content>
+  <div *ngIf="data.action === 'removeMessage'">
+    {{data.question}}
+  </div>
+  <mat-form-field class="example-full-width" *ngIf="data.action === 'editMessage'">
+      <input
+      matInput
+      [(ngModel)]="message"
+      color="#fffff"
+      placeholder="Type your message" />
+    </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <div>
+    <button mat-raised-button mat-dialog-close>No</button>
+    <button mat-raised-button [mat-dialog-close]="data.action === 'removeMessage' ? true : message">Yes</button>
+  </div>
+</mat-dialog-actions>

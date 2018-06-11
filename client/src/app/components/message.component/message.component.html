@@ -1,12 +1,30 @@
-<div class="content" [ngClass]="{
-  'sentMessage': messageData.fromUserName === userName,
-  'receivedMessage': messageData.fromUserName !== userName }">
-  <div class="avatar">
-    <img [src]="messageData.userAvatar" alt="avatar" />
+<ng-container *ngIf="infoMessage; then infoMessageTemp; else messageTemp">
+</ng-container>
+
+<ng-template #infoMessageTemp>
+  <div *ngIf="infoMessage.action === 'join'" class="joinMessage"><span>{{infoMessage.name}}</span> is joined to chat</div>
+  <div *ngIf="infoMessage.action === 'exitUser'" class="joinMessage"><span>{{infoMessage.name}}</span> is exit from chat</div>
+</ng-template>
+
+<ng-template #messageTemp>
+  <div class="content"
+    [ngClass]="{
+    'sentMessage': message.fromUserName === userName,
+    'receivedMessage': message.fromUserName !== userName }"
+    @showMessage>
+    <div class="avatar">
+      <img [src]="message.userAvatar" alt="avatar" />
+    </div>
+    <div class="messageContainer">
+      <div class="name">{{message.fromUserName}}</div>
+      <div class="message">{{message.message}}</div>
+      <div class="option">
+        <div class="date">{{message.date}}</div>
+        <span *ngIf="userName === message.fromUserName">
+          <i (click)="onEdit()" class="material-icons">edit</i>
+          <i (click)="onDelete()" class="material-icons">delete</i>
+        </span>
+      </div>
+    </div>
   </div>
-  <div class="messageContainer">
-    <div class="name">{{messageData.fromUserName}}</div>
-    <div class="message">{{messageData.message}}</div>
-    <div class="date">{{messageData.date}}</div>
-  </div>
-</div>
+</ng-template>

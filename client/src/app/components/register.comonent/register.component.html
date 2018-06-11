@@ -1,27 +1,29 @@
-<mat-horizontal-stepper>
-  <mat-step>
-    <ng-template matStepLabel>Choose your an action</ng-template>
-      <button (click)="toggleSignIn()" mat-button matStepperNext>Sign in</button>
-      <button (click)="toggleSignUp()" mat-button matStepperNext>Sign up</button>
-  </mat-step>
-  <mat-step  editable={{true}}>
-    <ng-template matStepLabel>{{ mod ? mod : 'Authorize' }}</ng-template>
-    <form>
-      <mat-form-field>
-        <input matInput [(ngModel)]="userName" [placeholder]="mod === 'SignIn' ? 'SignIn' : 'SignUp'" name="auth" required />
-      </mat-form-field>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <ng-container
-          *ngIf="mod !== 'SignIn'; then signUp; else signIn">
-        </ng-container>
-        <ng-template #signIn>
-          <button mat-button (click)="onSignIn()">SignIn</button>
-        </ng-template>
-        <ng-template #signUp>
-          <button mat-button (click)="onSignUp()">SignUp</button>
-        </ng-template>
-      </div>
-    </form>
-  </mat-step>
-</mat-horizontal-stepper>
+<div class="cnt">
+  <mat-horizontal-stepper>
+    <mat-step>
+      <ng-template matStepLabel>Choose your an action</ng-template>
+        <button (click)="toggleSignIn()" mat-button matStepperNext>Sign in</button>
+        <button (click)="toggleSignUp()" mat-button matStepperNext>Sign up</button>
+    </mat-step>
+    <mat-step  editable={{true}}>
+      <ng-template matStepLabel>{{ mod ? mod : 'Authorize' }}</ng-template>
+      <form>
+        <mat-form-field>
+          <input matInput [(ngModel)]="userName" [placeholder]="mod === 'SignIn' ? 'SignIn' : 'SignUp'" name="auth" required />
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <ng-container
+            *ngIf="mod !== 'SignIn'; then signUp; else signIn">
+          </ng-container>
+          <ng-template #signIn>
+            <button mat-button (click)="onSignIn()">SignIn</button>
+          </ng-template>
+          <ng-template #signUp>
+            <button mat-button (click)="onSignUp()">SignUp</button>
+          </ng-template>
+        </div>
+      </form>
+    </mat-step>
+  </mat-horizontal-stepper>
+</div>

@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 
 import { Register } from '../../models/register.model';
 import { HttpService } from '../../services/http.service';
+import { SocketService } from '../../services/socket.service';
 import { StoreService } from '../../services/store.service';
 
 @Component({
@@ -20,6 +21,7 @@ export class RegisterComponent {
     private readonly http: HttpService,
     private readonly store: StoreService,
     private readonly router: Router,
+    private readonly socket: SocketService,
   ) {}
 
   public toggleSignIn(): void {
@@ -35,6 +37,7 @@ export class RegisterComponent {
       .subscribe(res => {
         this.store.saveName(res.name, res.avatar);
         this.router.navigate(['chat']);
+        this.socket.emitJoinEvent(res.name);
         subsc.unsubscribe();
       });
   }
@@ -44,6 +47,7 @@ export class RegisterComponent {
       .subscribe(res => {
         this.store.saveName(res.name, res.avatar);
         this.router.navigate(['chat']);
+        this.socket.emitJoinEvent(res.name);
         subsc.unsubscribe();
       });
   }

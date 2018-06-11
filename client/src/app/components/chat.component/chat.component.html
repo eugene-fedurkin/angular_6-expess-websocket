@@ -1,12 +1,26 @@
-<div *ngIf="user">
+<div *ngIf="user" class="mainConteiner">
   <mat-toolbar>{{user.name}}</mat-toolbar>
 
   <mat-card>
-    <div class="fieldToMessages" #field>
-      <app-message [messageData]="message" [userName]="user.name"  *ngFor="let message of user.messages"></app-message>
+    <div [appImgLoader]="'loaded'" class="background"></div>
+    <div class="fieldToMessages" @hideMessage>
+      <app-message
+        [messageData]="message"
+        [userName]="user.name"
+        (edit)="editMessage($event)"
+        (delete)="deleteMessage($event)"
+        [id]="last ? 'last' : 'notLast'"
+        *ngFor="let message of user.messages; let last = last"
+        >
+      </app-message>
     </div>
     <mat-form-field class="example-full-width">
-      <input matInput [(ngModel)]="message" (keyup.enter)="sendMessage()" placeholder="Type your message" />
+      <input
+        matInput
+        [(ngModel)]="message"
+        (keyup.enter)="sendMessage()"
+        color="#fffff"
+        placeholder="Type your message" />
     </mat-form-field>
   </mat-card>
 </div>

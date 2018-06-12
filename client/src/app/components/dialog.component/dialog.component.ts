@@ -8,10 +8,11 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 })
 export class DialogComponent {
 
-  public message: string = '';
+  public message: string = this.data.value ? this.data.value : '';
 
   constructor(
     public dialogRef: MatDialogRef<DialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
+
 }

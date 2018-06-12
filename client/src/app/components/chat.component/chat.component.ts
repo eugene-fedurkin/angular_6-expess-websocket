@@ -66,6 +66,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewInit {
     const dialogRef = this.dialog.open(DialogComponent, {
       data: {
         action: 'editMessage',
+        value: message.message,
       }
     });
 

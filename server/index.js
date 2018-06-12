@@ -2,9 +2,16 @@ const express = require('express');
 const socket = require('socket.io');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const avatarAPI = 'https://api.adorable.io/avatars/';
-
+const MongoClient = require('mongodb').MongoClient;
+const mongoose = require('mongoose')
+const url = "mongodb://127.0.0.1:27017/";
 const app = express();
+const Messages = require('./models/messages');
+const Message = require('./models/message');
+
+const api = require('./routes/api');
+
+mongoose.connect(url);
 
 app.use(bodyParser.json());
 const originsWhitelist = [
@@ -18,57 +25,25 @@ const corsOptions = {
   credentials:true
 }
 app.use(cors(corsOptions));
-
-
-const temporaryDB = {
-  names: [],
-};
-
+app.use('/', api);
 
 const server = app.listen(4000, function() {
   console.log('listen port 4000');
 });
 
-app.post('/register', function(req, res) {
-  const name = req.body ? req.body.name : null;
-  if (!name) {
-    res.status(422).send({ error: 'validation error' });
-  }
-  
-  if (temporaryDB.names.findIndex(nameData => nameData.name === name) === -1) {
-    const avatar = `${avatarAPI}${parseInt(Math.random() * 10000)}`;
-    res.send({ name, avatar });
-    temporaryDB.names.push({ name, avatar })
-  } else {
-    res.status(409).send({ error: 'user already registred' });
-  }
-});
-
-app.post('/signin', function(req, res) {
-  const name = req.body ? req.body.name : null;
-  if (!name) {
-    res.status(422).send({ error: 'validation error' });
-  }
-
-  const indexName = temporaryDB.names.findIndex(nameData => nameData.name === name);
-
-  if (indexName !== -1) {
-    const dataName = temporaryDB.names[indexName];
-    res.send(dataName);
-  } else {
-    res.status(409).send({ error: 'Can\'t find the userName' });
-  }
-});
-
 const io = socket(server);
 
 io.on('connection', function(socket) {
-  // if (io.sockets.connected) {
-  //   io.sockets.connected;
-  //   console.log(io.sockets.connected)
-  // }
   socket.on('chat', function(data) {
-    console.log('chat', data);
+    // console.log('chat', data);
+
+    Messages.find({}).exec(function(err, messages) { // TOO: save message
+      if (err) throw err;
+      // const messageSchema = new Message(data);
+      // messages.push(data);
+      // Messages.save(() => console.log('saved'));
+      // console.log(messages);
+    });
     io.sockets.emit('chat', data);
   });
 
